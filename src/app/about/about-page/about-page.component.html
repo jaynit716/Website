@@ -1,0 +1,30 @@
+<div *ngIf="aboutData">
+<section id="about" class="introduction scrollto">
+
+    <div class="row clearfix">
+
+        <div class="col-3">
+            <div class="section-heading">
+                <h3>{{aboutData.tagline}}</h3>
+                <h2 class="section-title">{{aboutData.title}}</h2>
+                <p class="section-subtitle">{{aboutData.description}}</p>
+            </div>
+
+        </div>
+
+        <div class="col-2-3">
+
+            <!--Icon Block-->
+            <div *ngFor="let feature of features">
+                <app-feature-block [feature]="feature"></app-feature-block>
+            </div>
+            <!--End of Icon Block-->
+
+          
+        </div>
+
+    </div>
+
+
+</section>
+</div>

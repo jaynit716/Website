@@ -1,0 +1,38 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+
+    <div class="row clearfix">
+        
+        <div class="col-3 ">
+            <div class="panel">
+                <div class="user-dashbord-content panel-body center">
+                    <blockquote class="testimonial classic">
+                        <img [src]="'data:image/png;base64,'+user.image" id="photo-id" alt="User"/>
+                        <q>{{user.role}}</q>
+                    </blockquote>
+                    <ul>
+                        <a (click)="logOut()"><li>Sign Out <i class="fa fa-sign-out"></i></li></a>
+                        <a routerLink="User-edit/{{user.id}}" ><li>Edit <i class="fa fa-pencil"></i></li></a>
+                        <a (click)="DeleteAccount(user.id)"><li>Delete <i class="fa fa-user-times"></i></li></a>
+                    </ul>
+                </div>
+            </div>        
+        </div>
+
+        <div class="col-2-3 ">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="user-dashbord-content">
+                        <h3>{{user.fName}}&nbsp;{{user.lName}}</h3>
+                        <p class="pricing-sub">{{user.role}}</p>
+                        <div class="pricing">
+                            <p>{{user.bio}}</p>
+                        </div>
+                        <ul>
+                            <li>{{user.email}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+<ul *ngIf="menuOpen" [class.expended]="menuOpen===true">
+    <li *ngFor="let menuItem of menu">
+        <div *ngIf="menuItem.outlet==='';then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>
+            <a (click)="closeNav($event)" routerLink="{{menuItem.link}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >{{menuItem.title}}</a>
+        </ng-template>
+        
+        <ng-template #elseBlock>
+            <a (click)="closeNav($event)" [routerLink]="[{outlets:{popup:[menuItem.link]}}]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >{{menuItem.title}}</a>
+        </ng-template>
+    </li>
+</ul>

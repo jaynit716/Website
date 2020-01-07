@@ -1,0 +1,12 @@
+.section-summary, .article-text{
+    margin-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.admin-buttons a{
+    margin-left: 10px;
+}
+#back{
+    position:absolute;
+    left:25px;
+    top:5px;
+}

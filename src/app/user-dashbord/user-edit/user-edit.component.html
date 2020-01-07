@@ -1,0 +1,88 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+  
+      <div class="container">
+  
+        <div class=" panel">
+          <div class="panel-body">
+          <h4 class="text-center"><i class="fa fa-edit"></i> Edit User</h4>
+  
+          <form [formGroup]="userEditForm" (ngSubmit)="updateUser(userEditForm.value,userEditForm.controls.id.value)" >
+            <div class="form-group">
+              <label name="id" class="form-label">ID:</label>
+              <input type="text" class="form-control input-lg" name="id" placeholder="ID" formControlName="id" disabled> 
+            </div>
+            <div class="form-group">
+              <label name="fName" class="form-label">First Name:</label>
+              <input type="text" class="form-control input-lg" name="firstname" placeholder="First Name" formControlName="fName">
+              <div *ngIf="userEditForm.controls.fName.invalid && userEditForm.controls.fName.touched" class="text-danger">
+                <small *ngIf="userEditForm.controls.fName.errors.required">First Name is required.</small>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label name="lName" class="form-label">Last Name:</label>
+              <input type="text" class="form-control input-lg" name="lastname" placeholder="Last Name" formControlName="lName"> 
+              <div *ngIf="userEditForm.controls.lName.invalid && userEditForm.controls.lName.touched" class="text-danger">
+                <small *ngIf="userEditForm.controls.lName.errors.required">Last name is required.</small>
+              </div>
+            </div>
+  
+
+            <div class="form-group">
+              <label name="email" class="form-label">Email:</label>
+                <input type="text" class="form-control input-lg" name="email" placeholder="Email" formControlName="email">
+                <div *ngIf="userEditForm.controls.email.invalid && userEditForm.controls.email.touched" class="text-danger">
+                  <small *ngIf="userEditForm.controls.email.errors.required">Email is required.</small>
+                  <small *ngIf="userEditForm.controls.email.errors.email">Email is not in Proper Format.</small>
+                </div>
+            </div>
+  
+            <div class="form-group">
+              <label name="pass" class="form-label">Password:</label>
+              <input type="text" class="form-control input-lg" name="pass" placeholder="Password" formControlName="pass">
+              <div *ngIf="userEditForm.controls.pass.invalid && userEditForm.controls.pass.touched" class="text-danger">
+                <small *ngIf="userEditForm.controls.pass.errors.required">Password is required.</small>
+                <small *ngIf="userEditForm.controls.pass.errors.minlength">Password must be 8 character long.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label name="pic" class="form-label col-3">Image:</label>              
+                  <input type="text" class="form-control input-lg"  name="pic" placeholder="Picture" formControlName="image">
+                  <input type="file" (change)="onSelected($event)">
+                  <div *ngIf="userEditForm.controls.image.invalid && userEditForm.controls.image.touched" class="text-danger">
+                    <small *ngIf="userEditForm.controls.image.errors.required">Picture is required.</small>
+                  </div>
+            </div>
+
+            <div class="form-group">
+              <label name="role" class="form-label">Designation:</label>
+              <input type="text" class="form-control input-lg" name="role" placeholder="Designation" formControlName="role">
+              <div *ngIf="userEditForm.controls.role.invalid && userEditForm.controls.role.touched" class="text-danger">
+                <small *ngIf="userEditForm.controls.role.errors.required">Designation is required.</small>
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+              <label name="bio" class="form-label">Bio:</label>
+              <input type="text" class="form-control input-lg" name="bio" placeholder="Bio" formControlName="bio">
+              <div *ngIf="userEditForm.controls.bio.invalid && userEditForm.controls.bio.touched" class="text-danger">
+                <small *ngIf="userEditForm.controls.bio.errors.required">Bio is required.</small>
+              </div>
+            </div>
+            <div>
+            <button type="submit" [disabled]="userEditForm.invalid" class="btn btn-success"> Update</button>
+            
+            <button type="button" (click)="goBack()" class="btn btn-success"> Cancel</button>
+            </div>
+          </form>
+        </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  <section>
+  

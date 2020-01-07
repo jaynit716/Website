@@ -1,0 +1,12 @@
+#add-button{
+    position:inherit;
+    border-radius: 50%;
+    top: 10%;
+    right: 30px;
+    z-index: 99999;
+}
+
+#add-button:hover{
+    background-color: #d2b356;
+    color: white;
+}

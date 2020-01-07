@@ -1,0 +1,19 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix " *ngIf="blogData">
+    <div class="row clearfix">
+
+        <div class="section-heading">
+            <h3>{{blogData.tagline}}</h3>
+            <h2 class="section-title">{{blogData.title}}</h2>
+            <p class="section-subtitle">{{blogData.description}}</p>
+            <a *ngIf="isLoggedIn" routerLink="Article-create" class="button" id="add-button"><i class="fa fa-plus"></i></a>
+        </div>
+
+        <div *ngFor="let post of pages" class="pricing-block col-3 wow fadeInUp" data-wow-delay="0.1s">
+            <app-post-block [post]="post"></app-post-block>
+        </div>
+    </div>
+    <div  class="row clearfix">
+      <app-pagination [pager]="pager" (setPage)="setPage($event)"></app-pagination>
+    </div>
+
+</section>

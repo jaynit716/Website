@@ -1,0 +1,72 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+  
+      <div class="col-3 container">
+  
+        <div class=" panel">
+          <div class="panel-body">
+          <h4 class="text-center"><i class="fa fa-plus"></i> Add Article</h4>
+  
+          <form [formGroup]="postAddForm" (ngSubmit)="addPost(postAddForm.value)">
+            
+            <div class="form-group">
+              <label name="title" class="form-label">Title:</label>
+              <input type="text" class="form-control input-lg" name="title" placeholder="Title" formControlName="title"> 
+              <div *ngIf="postAddForm.controls.title.invalid && postAddForm.controls.title.touched" class="text-danger">
+                <small *ngIf="postAddForm.controls.title.errors.required">Title is required.</small>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label name="pic" class="form-label">Pic:</label>
+              <select class="form-control input-lg" formControlName="pic" name="PicDropdown">
+                <option *ngFor="let pic of pics" [value]="pic.name">{{pic.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label name="summary" class="form-label">Summary:</label>
+              <input type="text" class="form-control input-lg" name="summary" placeholder="Summary" formControlName="summary">
+              <div *ngIf="postAddForm.controls.summary.invalid && postAddForm.controls.summary.touched" class="text-danger">
+                <small *ngIf="postAddForm.controls.summary.errors.required">Summary is required.</small>
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+              <textarea rows="10" style="width:100%;" class="form-control input-lg" name="articleText" placeholder="Article Text" formControlName="articleText"></textarea>
+              <div *ngIf="postAddForm.controls.articleText.invalid && postAddForm.controls.articleText.touched" class="text-danger">
+                <small *ngIf="postAddForm.controls.articleText.errors.required">Article Text is required.</small>
+              </div>
+            </div>
+            <div>
+            <button type="submit" [disabled]="postAddForm.invalid" class="btn btn-success">Save</button>
+            
+            <button type="button" (click)="goBack()" class="btn btn-success"> Cancel</button>
+            </div>
+          </form>
+        </div>
+        </div>
+  
+      </div>
+      <div class="col-2-3 container">
+          <div class="panel">
+              <div class="panel-body">
+                <div class="pricing-block-content">
+                  <h3>{{this.postAddForm.value.title}}</h3>
+                  <p class="pricing-sub">By {{this.postAddForm.value.author}} | {{this.postAddForm.value.date | date:'M/d/yy'}}</p>
+                  <div class="pricing">
+                      <img src="../assets/images/gallery-images/{{this.postAddForm.value.pic}}" alt="Article Image">
+                  </div>
+                  <p class="section-subtitle">{{this.postAddForm.value.summary}}</p>
+                  <p>{{this.postAddForm.value.articleText}}</p>
+                  
+                </div>
+              </div>
+          </div>
+
+      </div>
+  
+    </div>
+  <section>
+  

@@ -1,0 +1,21 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+        <div class="pricing-block col-1 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="pricing-block-content" *ngIf="post">
+                <a (click)="getBack()" id="back" class="button">Back</a>
+                <h3>{{post.title}}</h3>
+                <p class="pricing-sub">By {{post.author}} | {{post.date | date:'M/d/yy'}}</p>
+                <div class="pricing">
+                    <img src="../assets/images/gallery-images/{{post.pic}}">
+                </div>
+                
+                <div class="section-summary">{{post.summary}}</div>
+                <p class="article-text">{{post.articleText}}</p>
+                <div class="admin-buttons">
+                    <a *ngIf="isLoggedIn" routerLink="../../Article-edit/{{post.id}}" class="button">Edit Article <i class="fa fa-pencil"></i></a>
+                    <a *ngIf="isLoggedIn" (click)="DeleteArticle(post.id)" class="button">Delete Article <i class="fa fa-trash"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

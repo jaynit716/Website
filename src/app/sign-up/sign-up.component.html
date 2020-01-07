@@ -1,0 +1,78 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+  
+      <div class="container">
+  
+        <div class="center-form panel">
+          <div class="panel-body">
+          <h4 class="text-center"><i class="ion-md-person-add"></i> SignUp</h4>
+  
+          <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
+              
+            <div class="form-group">
+                <input type="text" class="form-control form-names input-lg" name="firstname" placeholder="Firstname" formControlName="fName">
+                <input type="text" class="form-control form-names input-lg" name="lastname" placeholder="Lastname" formControlName="lName">
+                <span class="ion-md-person form-control-icon"></span>
+                <div *ngIf="signUpForm.controls.fName.invalid && signUpForm.controls.fName.touched" class="text-danger">
+                  <small *ngIf="signUpForm.controls.fName.errors.required">Firstname is required.</small>
+                </div> 
+                <div *ngIf="signUpForm.controls.lName.invalid && signUpForm.controls.lName.touched" class="text-danger">
+                  <small *ngIf="signUpForm.controls.lName.errors.required">Lastname is required.</small>
+                </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="email" placeholder="Email" formControlName="email">
+              <span class="ion-ios-at form-control-icon"></span> 
+              <div *ngIf="signUpForm.controls.email.invalid && signUpForm.controls.email.touched" class="text-danger">
+                <small *ngIf="signUpForm.controls.email.errors.required">Email is required.</small>
+                <small *ngIf="signUpForm.controls.email.errors.email">Email is not in proper format.</small>
+              </div> 
+              
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control input-lg" name="password" placeholder="Password" formControlName="pass">
+                <span class="ion-md-key form-control-icon"></span>
+                <div *ngIf="signUpForm.controls.pass.invalid && signUpForm.controls.pass.touched" class="text-danger">
+                  <small *ngIf="signUpForm.controls.pass.errors.required">Password is required.</small>
+                  <small *ngIf="signUpForm.controls.pass.errors.minlength">Password must be 8 character long.</small>
+                </div> 
+            </div>
+
+
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="role" placeholder="Designation" formControlName="role">
+              <span class="ion-md-person form-control-icon"></span>
+              <div *ngIf="signUpForm.controls.role.invalid && signUpForm.controls.role.touched" class="text-danger">
+                <small *ngIf="signUpForm.controls.role.errors.required">Designation is required.</small>
+              </div> 
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="bio" placeholder="Bio" formControlName="bio">
+              <span class="ion-md-person form-control-icon"></span>
+              <div *ngIf="signUpForm.controls.bio.invalid && signUpForm.controls.bio.touched" class="text-danger">
+                <small *ngIf="signUpForm.controls.bio.errors.required">Bio is required.</small>
+              </div> 
+            </div>
+
+            <div class="form-group">
+              <input type="file" (change)="onSelected($event)" class="form-control input-lg" name="image" placeholder="Image">
+              <span class="fa fa-image form-control-icon"></span>
+            </div>
+  
+            <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-block btn-success">SignUp</button>
+  
+            <p class="text-center">
+              <small>Already have an account yet!! <a routerLink="/LogIn">Log In</a></small>
+  
+            </p>
+  
+          </form>
+        </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  <section>
+  

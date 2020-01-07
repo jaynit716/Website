@@ -1,0 +1,24 @@
+<div *ngIf="homeData">
+<header id="banner" class="scrollto clearfix" data-enllax-ratio=".5"
+[style.background]="'url(../assets/images/banner-images/'+ homeData.image +') no-repeat center top'">
+
+    <!--Banner Content-->
+      <div id="banner-content" class="row clearfix">
+    
+            <div class="col-38">
+    
+                <div class="section-heading">
+                    <h1>{{homeData.heading}}</h1>
+                    <h2>{{homeData.headingtext}}</h2>
+                </div>
+    
+                <!--Call to Action-->
+                <a href="{{homeData.buttonlink}}" class="button">{{homeData.buttontext}}</a>
+                <!--End Call to Action-->
+    
+            </div>
+    
+        </div><!--End of Row-->
+    
+</header>
+</div>

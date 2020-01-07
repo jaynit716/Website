@@ -1,0 +1,12 @@
+<div class="pricing-block-content" *ngIf="post">
+    <h3>{{post.title}}</h3>
+    <p class="pricing-sub">By {{post.author}} | {{post.date | date:'M/d/yy'}}</p>
+    <div class="pricing">
+        <img src="../assets/images/gallery-images/{{post.pic}}">
+    </div>
+    
+    <p>{{post.summary}}</p>
+    
+    <a routerLink="Article/{{post.id}}" class="button">Read More..<i class="fa fa-heart"></i></a>
+    <!--<a routerLink="Article-edit/{{post.id}}" class="button"><i class="fa fa-pencil"></i></a>-->
+</div>

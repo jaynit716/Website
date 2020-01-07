@@ -1,0 +1,43 @@
+<section id="pricing" class="secondary-color text-center scrollto clearfix ">
+    <div class="row clearfix">
+  
+      <div class="container">
+  
+        <div class="center-form panel">
+          <div class="panel-body">
+          <h4 class="text-center"><i class="ion-md-log-in"></i> Login</h4>
+  
+          <form [formGroup]="logInForm" (ngSubmit)="logIn(logInForm.value)" >
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="email" placeholder="Email" formControlName="email">
+              <span class="ion-ios-at form-control-icon"></span> 
+              <div *ngIf="logInForm.controls.email.invalid && logInForm.controls.email.touched" class="text-danger">
+                <small *ngIf="logInForm.controls.email.errors.required">Email is required.</small>
+                <small *ngIf="logInForm.controls.email.errors.email">Email is not in proper format.</small>
+              </div> 
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control input-lg" name="password" placeholder="Password" formControlName="password">
+                <span class="ion-md-key form-control-icon"></span>
+                <div *ngIf="logInForm.controls.password.invalid && logInForm.controls.password.touched" class="text-danger">
+                  <small *ngIf="logInForm.controls.password.errors.required">Password is required.</small>
+                  <small *ngIf="logInForm.controls.password.errors.minlength">Password must be 8 character long.</small>
+                </div> 
+            </div>
+  
+            <button type="submit" [disabled]="logInForm.invalid" class="btn btn-block btn-success"> Login</button>
+  
+            <p class="text-center">
+              <small>Don't have an account yet? <a routerLink="/SignUp">Sign up</a></small>
+  
+            </p>
+  
+          </form>
+        </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  <section>
+  

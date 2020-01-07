@@ -1,0 +1,27 @@
+<div class="row clearfix">
+  
+    <div class="container">
+  
+        <div class="center-form panel">
+          <div class="panel-body">
+          <h4 class="text-center"><i class="ion-md-mail"></i> Subscribe Now</h4>
+            <a (click)="cancel()" id="close" ><i class="fa fa-window-close" ></i></a>
+          <form  [formGroup]="subscribeForm" (ngSubmit)="subscribe(subscribeForm.value)">
+              
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="email" placeholder="Email" formControlName="email">
+              <span class="ion-ios-at form-control-icon"></span>
+              <div *ngIf="subscribeForm.controls.email.invalid && subscribeForm.controls.email.touched" class="text-danger">
+                <small *ngIf="subscribeForm.controls.email.errors.required">Email is required.</small>
+                <small *ngIf="subscribeForm.controls.email.errors.email">Email is not in proper format.</small>
+              </div>
+             
+            </div>
+            <button [disabled]="subscribeForm.invalid" type="submit" class="btn btn-block btn-success">Subscribe</button>
+            
+          </form>
+        </div>
+        </div>
+    </div>
+</div>
+  

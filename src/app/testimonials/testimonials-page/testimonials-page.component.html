@@ -1,0 +1,19 @@
+<aside id="testimonials" class="scrollto text-center" data-enllax-ratio=".2" *ngIf="testimonialsData">
+
+    <div class="row clearfix">
+
+        <div class="section-heading">
+            <h3>{{testimonialsData.tagline}}</h3>
+            <h2 class="section-title">{{testimonialsData.title}}</h2>
+            <p class="section-subtitle">{{testimonialsData.description}}</p>
+        </div>
+
+        <!--User Testimonial-->
+        <div *ngFor="let feedback of feedbacks">
+            <app-feedback-block [feedback]="feedback"></app-feedback-block>
+        </div>
+        <!-- End of Testimonial-->
+
+    </div>
+
+</aside>
