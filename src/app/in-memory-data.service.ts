@@ -9,11 +9,6 @@ export class InMemoryDataService implements InMemoryDbService {
   constructor() { }
 
   createDb(){
-    const Users=[
-      {id:1,firstname:'jaynit',lastname:'bhavsar',email:'jaynit716@gmail.com',password:'JekRocks',bio: 'this is my bio', role: 'admin', image: 'user-4.png'},
-      {id:2,firstname:'Chintan',lastname:'bhavsar',email:'chintan716@gmail.com',password:'ChintuRocks',bio: 'this is my bio', role: 'Developer', image: 'user-2.jpg'},
-      {id:3, firstName: 'rahul', lastName: 'gupta', email: 'test123@gmail.com', password: 'welcome',bio: 'this is my bio', role: 'Designer', image: 'user-3.jpg' }
-  ];
 
     const pages = [
       {id: 'about',
@@ -129,113 +124,16 @@ export class InMemoryDataService implements InMemoryDbService {
     
     ];
 
-    const posts=[
-      {id:0,title:'My First Article',author:'JB',date:'2019-12-1',pic:'gallery-image-1.jpg',summary:'Start Believe In Yourself!',articleText:'The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela'},
-      {id:1,title:'My Second Article',author:'JB',date:'2019-1-13',pic:'gallery-image-2.jpg',summary:'Start Believe In Yourself!',articleText:'The way to get started is to quit talking and begin doing. -Walt Disney'},
-      {id:2,title:'My Third Article',author:'JB',date:'2019-2-10',pic:'gallery-image-3.jpg',summary:'Start Believe In Yourself!',articleText:"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. -Steve Jobs"},
-      {id:3,title:'My Forth Article',author:'JB',date:'2019-6-29',pic:'gallery-image-4.jpg',summary:'Start Believe In Yourself!',articleText:'If life were predictable it would cease to be life, and be without flavor. -Eleanor Roosevelt'},
-      {id:4,title:'My Fifth Article',author:'JB',date:'2019-7-4',pic:'gallery-image-5.jpg',summary:'Start Believe In Yourself!',articleText:"If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough. -Oprah Winfrey"},
-      {id:5,title:'My Sixth Article',author:'JB',date:'2019-11-2',pic:'gallery-image-6.jpg',summary:'Start Believe In Yourself!',articleText:"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success. -James Cameron"},
-      {id:6,title:'My Seventh Article',author:'JB',date:'2019-2-13',pic:'gallery-image-2.jpg',summary:'Start Believe In Yourself!',articleText:"Life is what happens when you're busy making other plans. -John Lennon"},
-      {id:7,title:'My Eighth Article',author:'JB',date:'2019-9-25',pic:'gallery-image-4.jpg',summary:'Start Believe In Yourself!',articleText:'Spread love everywhere you go. Let no one ever come to you without leaving happier. -Mother Teresa'},
-
-    ];
-
     const websites=[
       {id:'1',title:'facebook',name:'Facebook',target:'_blank',link:'https://www.facebook.com/username',icon:'facebook'},
       {id:'2',title:'Google+',name:'Google+',target:'_blank',link:'http://google.com/+username',icon:'google-plus'},
       {id:'3',title:'Twitter',name:'Twitter',target:'_blank',link:'https://www.Twitter.com/username',icon:'twitter'},
       {id:'4',title:'Instagram',name:'Instagram',target:'_blank',link:'https://www.Instagram.com/username',icon:'instagram'},
-      {id:'5',title:'Behance',name:'Behance',target:'_blank',link:'https://www.behance.com/username',icon:'behance'}
     
     ];
 
   
-    return {Users,posts,menu,pages,features,images,companies,feedbacks,plans,websites};
+    return {menu,pages,features,images,companies,feedbacks,plans,websites};
   }
 
-  getToken(users){
-    return 'this is a token';
-  }
-
-  get(reqInfo:RequestInfo){
-    if(reqInfo.collectionName==='posts')
-    {
-      return this.getArticles(reqInfo);
-    }
-    return undefined;
-  }
-
-  getArticles(reqInfo:RequestInfo){
-
-    return reqInfo.utils.createResponse$(()=>{
-      const dataEncapsulation= reqInfo.utils.getConfig().dataEncapsulation;
-      const id =reqInfo.id;
-      const collection = reqInfo.collection;
-      const data= id===undefined?collection:reqInfo.utils.findById(collection,id);
-
-      const options: ResponseOptions = data ?
-      {
-        body: dataEncapsulation ? { data } : data,
-        status: 200
-      } :
-      {
-        body: { error: `Post not found` },
-        status: 404
-      };
-
-      options.statusText = options.status===200?'ok':'Not found';
-      options.headers = reqInfo.headers;
-      options.url = reqInfo.url;
-      return options;
-
-    });
-
-  }
-
-  post(reqInfo:RequestInfo){
-    if(reqInfo.id ==='LogIn'){
-      return reqInfo.utils.createResponse$(()=>{
-        const dataEncapsulation= reqInfo.utils.getConfig().dataEncapsulation;
-        const Users= reqInfo.collection.find(user=>{
-          return reqInfo.req['body'].email === user.email && reqInfo.req['body'].password === user.password;
-        });
-
-        let responseBody={};
-
-        if(Users){
-          responseBody={
-            id: Users.id,
-            firstname:Users.firstname,
-            lastname:Users.lastname,
-            email:Users.email,
-            bio:Users.bio,
-            role:Users.role,
-            image:Users.image,
-            token:this.getToken(Users)
-          };
-        }
-
-        const options: ResponseOptions = responseBody ?
-        {
-          body: dataEncapsulation ? { responseBody } : responseBody,
-          status: 200
-        } :
-        {
-          body: { error: `'User' with email='${reqInfo.req['body'].email}' not found` },
-          status: 404
-        };
-
-        options.statusText = options.status===200?'ok':'Not found';
-        options.headers = reqInfo.headers;
-        options.url = reqInfo.url;
-        return options;
-
-      });
-
-    }
-    else if(reqInfo.id ==='SignUp'){
-      reqInfo.id=null;
-    }
-  }
 }

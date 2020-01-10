@@ -12,7 +12,7 @@ import { ApiCallService } from '../api-call.service';
 export class SignUpComponent implements OnInit {
 
   signUpForm:FormGroup;
-
+  file:any;
   constructor(private fb:FormBuilder, private auth:AuthenticationService,private router:Router,private api:ApiCallService) { }
 
   ngOnInit() {
@@ -30,8 +30,6 @@ export class SignUpComponent implements OnInit {
 
   signUp(){
 
-    
-
     const formData= new FormData();
     
     formData.append('fName',this.signUpForm.controls.fName.value);
@@ -40,9 +38,8 @@ export class SignUpComponent implements OnInit {
     formData.append('pass',this.signUpForm.controls.pass.value);
     formData.append('bio',this.signUpForm.controls.bio.value);
     formData.append('role',this.signUpForm.controls.role.value);
-    formData.append('image',this.signUpForm.get('image').value);
-    
-    console.log(this.signUpForm.get('image').value);
+    formData.append('image',this.signUpForm.get('image').value,this.file.name);
+    console.log(formData);
     return this.api.addUser(formData).subscribe(
       (user)=> {
         this.router.navigate(['LogIn']);
@@ -52,8 +49,8 @@ export class SignUpComponent implements OnInit {
 
   onSelected(event){
     if(event.target.files.length>0){
-      const file = event.target.files[0];
-      this.signUpForm.get('image').setValue(file);
+      this.file = event.target.files[0];
+      this.signUpForm.get('image').setValue(this.file);
     }
   }
 }

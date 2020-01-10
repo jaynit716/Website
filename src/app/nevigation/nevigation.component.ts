@@ -30,8 +30,4 @@ export class NevigationComponent implements OnInit {
     this.menuOpen=state;
   }
   
-  logOut(){
-    this.auth.logout();
-  }
-
 }

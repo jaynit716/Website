@@ -48,9 +48,10 @@
             </div>
 
             <div class="form-group">
-              <label name="pic" class="form-label col-3">Image:</label>              
-                  <input type="text" class="form-control input-lg"  name="pic" placeholder="Picture" formControlName="image">
-                  <input type="file" (change)="onSelected($event)">
+              <label name="pic" class="form-label">Image:</label>              
+                  <input type="text" class="form-control input-lg" style="width: 75%;" name="pic" placeholder="Picture" formControlName="image" disabled>
+                  <label name="upload" for="uploadImage" class="btn btn-success">Upload</label>              
+                  <input type="file" style="display: none;" (change)="onSelected($event)" id="uploadImage">
                   <div *ngIf="userEditForm.controls.image.invalid && userEditForm.controls.image.touched" class="text-danger">
                     <small *ngIf="userEditForm.controls.image.errors.required">Picture is required.</small>
                   </div>
@@ -78,6 +79,7 @@
             <button type="button" (click)="goBack()" class="btn btn-success"> Cancel</button>
             </div>
           </form>
+
         </div>
         </div>
   

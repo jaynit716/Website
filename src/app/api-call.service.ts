@@ -50,6 +50,9 @@ export class ApiCallService {
   updateUser(formData:any,id:number):Observable<any>{
     return this.http.put(this.BASE_URL+"/users/"+id,formData);
   }
+  updateUserByFormData(formData:any,id:number):Observable<any>{
+    return this.http.put(this.BASE_URL+"/user/"+id,formData);
+  }
   deleteUser(id:number):Observable<any>{
     return this.http.delete(this.BASE_URL+"/users/"+id);
   }

@@ -27,10 +27,10 @@ export class HeaderComponent implements OnInit, AfterContentChecked {
   getUser(){
     this.user= JSON.parse(localStorage.getItem('currentUser'));
     if(this.user){
-      this.profileImage=this.user.image;
+      this.profileImage='data:image/png;base64,'+this.user.file;
     }
     else{
-      this.profileImage='default-user.png'
+      this.profileImage='../assets/images/user-images/default-user.png';
     }
 
   }

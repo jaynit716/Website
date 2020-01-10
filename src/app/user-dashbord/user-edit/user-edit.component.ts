@@ -11,7 +11,7 @@ import { ApiCallService } from 'src/app/api-call.service';
 })
 export class UserEditComponent implements OnInit {
 
-  selectedImage:File=null;
+  selectedImage:any;
   userEditForm:FormGroup;
   id:number;
 
@@ -31,8 +31,8 @@ export class UserEditComponent implements OnInit {
       'pass':[null,[Validators.required,Validators.minLength(8)]],
       'bio':[null,Validators.required],
       'role':[null,Validators.required],
-      file:[''],
-      'image':["../user-images/default-user.png",Validators.required]          
+       file:[''],
+      'image':["",Validators.required]          
     });
     this.id= this.route.snapshot.params['id'] || null;
     if(this.id){
@@ -54,19 +54,40 @@ export class UserEditComponent implements OnInit {
             pass:user.pass,
             role:user.role,
             image:user.image,
-            bio:user.bio
+            bio:user.bio,
+            file:user.file
           }
-        );}
+        );
+      }
     );}
 
-  updateUser(formData:NgForm,id:number){
+  updateUser(fdata:NgForm,id:number){
+
     if(this.selectedImage!=null){
+
+      const formData= new FormData();
+      formData.append('fName',this.userEditForm.controls.fName.value);
+      formData.append('lName',this.userEditForm.controls.lName.value);
+      formData.append('email',this.userEditForm.controls.email.value);
+      formData.append('pass',this.userEditForm.controls.pass.value);
+      formData.append('bio',this.userEditForm.controls.bio.value);
+      formData.append('role',this.userEditForm.controls.role.value);
+      formData.append('file',this.userEditForm.get('file').value,this.selectedImage.name);
+      this.api.updateUser(formData,id).subscribe(
+        () => {
+          this.updateUserInCookie(id);
+        }
+      );
     }
-    this.api.updateUser(formData,id).subscribe(
-      () => {
-        this.updateUserInCookie(id);
-      }
-    );
+    else{
+      console.log(fdata);
+      this.api.updateUserByFormData(fdata,id).subscribe(
+        () => {
+          this.updateUserInCookie(id);
+        }
+      );
+    }
+
   }
 
   goBack(){
@@ -74,8 +95,11 @@ export class UserEditComponent implements OnInit {
   }
 
   onSelected(event){
-    this.selectedImage=<File>event.target.files[0];
-    console.log(this.selectedImage.name);
+    if(event.target.files.length>0){
+      this.selectedImage = event.target.files[0];
+      this.userEditForm.controls.image.setValue(this.selectedImage.name);
+      this.userEditForm.get('file').setValue(this.selectedImage);
+    }
   }
 
   updateUserInCookie(id:number){

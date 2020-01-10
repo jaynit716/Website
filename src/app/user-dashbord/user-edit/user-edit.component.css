@@ -127,3 +127,10 @@ form {
 [class^='ion-'] {
     font-size: 1.2em;
 }
+.upload{
+    border: 2px solid black;
+    border-radius: 5px;
+    box-shadow: gray;
+    padding: 5px;
+
+}
