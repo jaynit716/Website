@@ -2365,10 +2365,10 @@ a:hover, #header.nav-solid nav a:hover {
 #banner .section-heading:before, .testimonial.classic footer:before {
     background: #d2b356;
 }
-
+/* 
 .pricing-block-content:hover {
     border-color:#d2b356;
-}
+} */
 
 
 /*------------------------------------------------------------------------------------------*/

@@ -77,6 +77,9 @@ export class ApiCallService {
   updatePost(formData:any,id:number):Observable<post>{
     return this.http.put<post>(this.BASE_URL+"/posts/"+id,formData);
   }
+  updatePostByFormData(formData:any,id:number):Observable<post>{
+    return this.http.put<post>(this.BASE_URL+"/post/"+id,formData);
+  }
   deletePost(id:Number):Observable<any>{
     return this.http.delete(this.BASE_URL+"/posts/"+id);
   }

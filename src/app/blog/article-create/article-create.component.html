@@ -7,7 +7,7 @@
           <div class="panel-body">
           <h4 class="text-center"><i class="fa fa-plus"></i> Add Article</h4>
   
-          <form [formGroup]="postAddForm" (ngSubmit)="addPost(postAddForm.value)">
+          <form [formGroup]="postAddForm" (ngSubmit)="addPost()">
             
             <div class="form-group">
               <label name="title" class="form-label">Title:</label>
@@ -19,9 +19,14 @@
   
             <div class="form-group">
               <label name="pic" class="form-label">Pic:</label>
-              <select class="form-control input-lg" formControlName="pic" name="PicDropdown">
+              <!-- <select class="form-control input-lg" style="width: 50%;" formControlName="pic" name="PicDropdown">
                 <option *ngFor="let pic of pics" [value]="pic.name">{{pic.name}}</option>
               </select>
+               -->
+              <input type="text"  class="form-control input-lg" style="width: 50%;" formControlName="pic" name="Pic" disabled>
+              <label name="upload" for="uploadImage" class="btn btn-success">+</label>              
+              <input type="file" style="display: none;" (change)="onSelected($event)" id="uploadImage">
+                  
             </div>
 
             <div class="form-group">
@@ -56,7 +61,7 @@
                   <h3>{{this.postAddForm.value.title}}</h3>
                   <p class="pricing-sub">By {{this.postAddForm.value.author}} | {{this.postAddForm.value.date | date:'M/d/yy'}}</p>
                   <div class="pricing">
-                      <img src="../assets/images/gallery-images/{{this.postAddForm.value.pic}}" alt="Article Image">
+                      <img [src]="picture" alt="Article Image">
                   </div>
                   <p class="section-subtitle">{{this.postAddForm.value.summary}}</p>
                   <p>{{this.postAddForm.value.articleText}}</p>

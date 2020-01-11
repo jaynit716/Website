@@ -12,6 +12,7 @@ import { ApiCallService } from 'src/app/api-call.service';
 })
 export class ArticleEditComponent implements OnInit {
 
+  selectedImage:any;
   postEditForm:FormGroup;
   id:number;
 
@@ -31,7 +32,8 @@ export class ArticleEditComponent implements OnInit {
       'date':[null,Validators.required],
       'pic':[null,Validators.required],
       'summary':[null,Validators.required],
-      'articleText':[null,Validators.required]
+      'articleText':[null,Validators.required],
+      file:['']
       
     });
     this.id= this.route.snapshot.params['id'] || null;
@@ -52,16 +54,43 @@ export class ArticleEditComponent implements OnInit {
             date:post.date,
             pic:post.pic,
             summary:post.summary,
-            articleText:post.articleText
+            articleText:post.articleText,
+            file:post.file
           }
         );}
     );}
 
-  updatePost(formData:NgForm,id:number){
-    console.log(id);
-    this.api.updatePost(formData,id).subscribe(
-      () => this.goBack()
-    );
+  updatePost(fdata:NgForm,id:number){
+
+    if(this.selectedImage!=null){
+
+      const formData= new FormData();
+      formData.append('title',this.postEditForm.controls.title.value);
+      formData.append('author',this.postEditForm.controls.author.value);
+      formData.append('date',this.postEditForm.controls.date.value);
+      formData.append('pic',this.postEditForm.controls.pic.value);
+      formData.append('summary',this.postEditForm.controls.summary.value);
+      formData.append('articleText',this.postEditForm.controls.articleText.value);
+      formData.append('file',this.postEditForm.get('file').value);
+      this.api.updatePost(formData,id).subscribe(
+        () => {
+          this.goBack();
+        }
+      );
+    }
+    else{
+      this.api.updatePostByFormData(fdata,id).subscribe(
+        () => this.goBack()
+      );
+      }
+  }
+
+  onSelected(event){
+    if(event.target.files.length>0){
+      this.selectedImage = event.target.files[0];
+      this.postEditForm.controls.pic.setValue(this.selectedImage.name);
+      this.postEditForm.get('file').setValue(this.selectedImage);
+    }
   }
 
   goBack(){

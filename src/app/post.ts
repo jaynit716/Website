@@ -7,7 +7,8 @@ export class post{
         public date:string,
         public pic:string,
         public summary:string,
-        public articleText:string
+        public articleText:string,
+        public file:any
     ){}
 
 }

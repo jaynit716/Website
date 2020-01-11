@@ -37,7 +37,9 @@
 
             <div class="form-group">
               <label name="pic" class="form-label">Pic:</label>
-              <input type="text" class="form-control input-lg" name="pic" placeholder="Picture" formControlName="pic">
+              <input type="text" style="width: 75%;" class="form-control input-lg" name="pic" placeholder="Picture" formControlName="pic">
+              <label name="upload" for="uploadImage" class="btn btn-success">Upload</label>              
+              <input type="file" style="display: none;" (change)="onSelected($event)" id="uploadImage">    
               <div *ngIf="postEditForm.controls.pic.invalid && postEditForm.controls.pic.touched" class="text-danger">
                 <small *ngIf="postEditForm.controls.pic.errors.required">Picture is required.</small>
               </div>
