@@ -7,7 +7,7 @@
           <div class="panel-body">
           <h4 class="text-center"><i class="ion-md-person-add"></i> SignUp</h4>
   
-          <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
+          <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
               
             <div class="form-group">
                 <input type="text" class="form-control form-names input-lg" name="firstname" placeholder="Firstname" formControlName="fName">
